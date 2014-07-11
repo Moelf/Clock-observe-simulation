@@ -67,7 +67,7 @@ def dopplerperiod(period,v):
 
 
 def relat_dopplerperiod(period,v):
-    return period*(100.0+v)/100.0/math.sqrt(1.0-(v/100.0)**2)
+    return dopplerperiod(period,v)/math.sqrt(1.0-(v/100)*(v/100))
 
 
 def sync():
@@ -107,8 +107,7 @@ class Clocks(object):
                 self.digit += 1
                 clocklabel1.configure(text=self.digit, fg=self.color)
         elif self.clocknum == 2:
-            self.adjust_period()
-            self.out_wavelength = (self.init_wavelength/(1.0-speed.get()/100.0))/math.sqrt(1.0-(speed.get()/100.0)**2)
+            self.out_wavelength = (self.init_wavelength/(1.0-speed.get()/100.0))*math.sqrt(1.0-(float(speed.get())/100.0)**2)
             self.color = rgb_to_web(wav2rgb(self.out_wavelength))
             clock2frequency.configure(text=str(round((3*10**8)/self.out_wavelength/1000, 3))+" THz\n"+str(round(self.out_wavelength, 3))+"nm")
             if clockpow2.get() == 1:
@@ -119,6 +118,7 @@ class Clocks(object):
             if clockpow3.get() == 1:
                 self.digit += 1
                 clocklabel3.configure(text=self.digit, fg=self.color)
+        self.adjust_period()
         top.after(int(self.out_period), self.tick)
 clock1 = Clocks(300.0, 560.0, 1)
 clock2 = Clocks(300.0, 560.0, 2)

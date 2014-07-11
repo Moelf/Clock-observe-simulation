@@ -4,7 +4,7 @@ Clock-observe-simulation
 ------------------
 
 Tips before using:
-  -The scale displays the speed in percentage of <i>c</i>(the velocity of light in vacuum)
+  -The scale displays the speed in percentage of <i>c</i>(the velocity of light in vacuum)\n
   -Positive number for scale means the clocks are leaving us, negative number means approaching to us
   -The color change is due to the red(blue) shift
   -The research of how to convert <i>wavelength</i> into RGB display is noted in the clock.py 

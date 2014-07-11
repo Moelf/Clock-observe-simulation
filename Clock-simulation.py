@@ -107,7 +107,7 @@ class Clocks(object):
                 self.digit += 1
                 clocklabel1.configure(text=self.digit, fg=self.color)
         elif self.clocknum == 2:
-            self.out_wavelength = (self.init_wavelength/(1.0-speed.get()/100.0))*math.sqrt(1.0-(float(speed.get())/100.0)**2)
+            self.out_wavelength = (self.init_wavelength/(1.0-speed.get()/100.0))*math.sqrt(1.0+(float(speed.get())/100.0)**2)
             self.color = rgb_to_web(wav2rgb(self.out_wavelength))
             clock2frequency.configure(text=str(round((3*10**8)/self.out_wavelength/1000, 3))+" THz\n"+str(round(self.out_wavelength, 3))+"nm")
             if clockpow2.get() == 1:
@@ -126,6 +126,7 @@ clock3 = Clocks(300.0, 560.0, 3)
 
 
 top = Tk()
+top.title("Ticking rate simulation")
 top.geometry('1000x800')
 
 speed = Scale(top, from_=-99.0, to=99.0, orient=HORIZONTAL, length=100)
@@ -145,7 +146,7 @@ clocklabel2.pack(fill=Y, expand=1)
 clock2frequency = Label(text=str(round((3*10**8)/clock2.out_wavelength/1000, 3))+" nm")
 clock2frequency.pack()
 
-label2 = Label(top, text='=================================================================================', font='Helvetica -20 bold', fg="#000000")
+label2 = Label(top, text='===================ONLY THE RATE OF TICKING IS MEANINGFUL======================', font='Helvetica -20 bold', fg="#C70000")
 label2.pack(fill=Y, expand=1)
 
 clocklabel3 = Label(top, text=clock2.digit, font='Helvetica -70 bold', fg=clock1.color)

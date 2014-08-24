@@ -120,6 +120,8 @@ class Clocks(object):
                 clocklabel3.configure(text=self.digit, fg=self.color)
         self.adjust_period()
         top.after(int(self.out_period), self.tick)
+
+
 clock1 = Clocks(300.0, 560.0, 1)
 clock2 = Clocks(300.0, 560.0, 2)
 clock3 = Clocks(300.0, 560.0, 3)
